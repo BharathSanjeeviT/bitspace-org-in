@@ -9,12 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.1",
+    "@mui/material": "^5.14.2",
     "@types/node": "20.3.2",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
+    "markdown-to-jsx": "^7.2.1",
     "next": "13.4.7",
     "postcss": "8.4.24",
     "react": "18.2.0",
