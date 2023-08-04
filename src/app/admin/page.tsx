@@ -1,5 +1,6 @@
 "use client"
 
+import API_URL from "@/libs/API_URL";
 import Memcomp from "@/libs/Memcomp";
 import axios from "axios";
 import { useEffect, useState } from "react"
@@ -8,7 +9,7 @@ const Admin = () => {
 
     useEffect(()=>{
         const getData = async () => {
-            const  { data } = await axios.get('api/getUsers')
+            const  { data } = await axios.get(`${API_URL}`)
             setData(data.data)
             setRoles(data.roles)
         }

@@ -1,4 +1,5 @@
 'use client'
+import API_URL from "@/libs/API_URL";
 import {useEffect, useState} from "react"
 import Toggle from "@/libs/Toggle";
 import axios from "axios";
@@ -19,7 +20,7 @@ const TimelineAdmin = () => {
 
     useEffect(()=>{
         const getData = async () => {
-            const { data } = await axios.get('/api')
+            const { data } = await axios.get(`${API_URL}/timeline`)
             console.log(data)
             setData(data)
         }

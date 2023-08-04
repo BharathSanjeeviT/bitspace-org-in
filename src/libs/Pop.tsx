@@ -7,7 +7,7 @@ const Pop = ({show,setShow,data,setBan}:any) => {
 
     const banUser = () => {
         setBanned((e)=>!e)
-        setBan(e=>!e)
+        setBan((e)=>!e)
     }
     return show && ( <>
 
