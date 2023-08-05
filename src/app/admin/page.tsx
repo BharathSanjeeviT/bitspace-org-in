@@ -1,23 +1,20 @@
 "use client"
-
 import API_URL from "@/libs/API_URL";
 import Memcomp from "@/libs/Memcomp";
 import axios from "axios";
 import { useEffect, useState } from "react"
-
+import { Rank } from '@/libs/utills/types'
 const Admin = () => {
 
     useEffect(()=>{
         const getData = async () => {
-            const  { data } = await axios.get(`${API_URL}`)
-            setData(data.data)
-            setRoles(data.roles)
+            const  { data } = await axios.get(`${API_URL}/admin`)
+            setData(data)
         }
         getData()
     },[])
 
-    const [ data , setData ] = useState<any>([])
-    const [ roles , setRoles] = useState<any>([])
+    const [data, setData] = useState<Array<Rank>>([])
 
     return (<>
 
@@ -26,15 +23,15 @@ const Admin = () => {
         </div>
         <div className="pt-20">
             {
-                roles.map( (element, idx) => {
-                    return (
+                data.map(( rank , idx )=>{
+                    return (<>
                         <div key={idx} className="flex flex-col items-center w-[97vw]">
-                        <div className="text-3xl font-bold">{ element.role }</div>
-                        { data.filter((data)=> data.rank == element.rank ).map((ele , idx)=>(
-                            <Memcomp data={ele} key={idx} roles={roles}/>
-                        )) }
+                            <div className="text-3xl font-bold">{ rank.r_name }</div>
+                            { rank.Users.map((user, idx)=>(
+                                <Memcomp {...user} key={idx}/>
+                            )) }
                         </div>
-                    )
+                    </>)
                 })
             }
         </div>

@@ -20,8 +20,7 @@ const TimelineAdmin = () => {
 
     useEffect(()=>{
         const getData = async () => {
-            const { data } = await axios.get(`${API_URL}/timeline`)
-            console.log(data)
+            const { data }:  { data: Array<IData> } = await axios.get(`${API_URL}/timeline`)
             setData(data)
         }
         getData();

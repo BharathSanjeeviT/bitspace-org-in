@@ -4,16 +4,18 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { useState } from "react";
 import Pop from "./Pop";
+import { Users } from "./utills/types";
 
-const Memcomp = ({data,roles}:any) => {
+const Memcomp = (data:Users) => {
+
     const [ show , setShow ] = useState(false)
-    const [ udata , setUdata ] = useState<any>()
-    const [ ban , setBan ] =useState(data.ban)
+    const [ udata , setUdata ] = useState<{ban:boolean,username:string,id:string}>({ ban : false , username : "Mike Oxlong" , id : "BS23001" })
+    const [ ban , setBan ] =useState(data.is_ban)
     const [ up , setUp ] =useState(false)
     const [ down , setDown ] =useState(false)
 
     const doBan = () => {
-        setUdata({ ban : data.ban , username : data.username })
+        setUdata({ ban : data.is_ban , username : data.username , id : data.id})
         setShow(true)
     }
 
@@ -23,7 +25,6 @@ const Memcomp = ({data,roles}:any) => {
                     width={65} height={65} className="mx-4 my-4 ml-5 rounded-full basis-1" alt="Sorry"/>
                 <div className="basis-3/4">
                     <span className="text-3xl font-extrabold">{data.username}</span><br/>
-                    <span className="text-lg font-bold text-[#59595b]">{data.role}</span>
                 </div>
                 <div className="flex basis-1">
                     { ban ?
@@ -51,33 +52,6 @@ const Memcomp = ({data,roles}:any) => {
                         <ArrowDownwardIcon fontSize="large"/></button>
                 </div>
             </div>
-            { up &&
-                <div className="flex items-center justify-between w-full h-24">
-                    <span className="text-2xl font-bold" >CURRENT ROLE :  {data.role}</span>
-                    <div><select className="p-3 text-xl font-semibold">
-                        {
-                            (roles.filter((element) => (data.rank > element.rank)&&(element.rank!=1))).map((ele,idx)=>(
-                                <option key={idx} className="text-xl font-semibold">{ele.role}</option>
-                            ))
-                        }
-                    </select></div>
-                    <button className="h-16 w-28 bg-[#8ae9b0] border-black border-[4px] text-xl font-extrabold mr-3">Promote</button>
-                </div>
-            }
-            { down &&
-                <div className="flex items-center justify-between w-full h-24">
-                    <span className="text-2xl font-bold">CURRENT ROLE :  {data.role}</span>
-                    <div><select className="p-4 text-xl font-semibold">
-                        {
-                            (roles.filter((element) => data.rank < element.rank)).map((ele,idx)=>(
-                                <option key={idx} className="text-xl font-semibold">{ele.role}</option>
-                            ))
-                        }
-                    </select></div>
-                    <button className="h-16 w-28 bg-[#fe8d8d] border-black border-[4px] text-xl font-extrabold mr-3">Demote</button>
-                </div>
-            }
-
-        </div> )
+            </div> )
 }
 export default Memcomp;
