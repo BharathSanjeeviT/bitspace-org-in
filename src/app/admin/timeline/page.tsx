@@ -4,13 +4,12 @@ import axios from "axios";
 import {API_URL} from "@/libs/constants";
 import Toggle from "@/libs/components/timeline/Toggle";
 import Change_Timeline from "@/libs/components/timeline/Change_Timeline";
-
 const TimelineAdmin = () => {
     interface IData {
         year : number;
         events : Array<{
             date : Date;
-            content : Array<string>;
+           content : Array<string>;
             title : string;
             id: number;
         }>
@@ -24,7 +23,6 @@ const TimelineAdmin = () => {
         title : "",
         id : 100
     })
-
     useEffect(()=>{
         const getData = async () => {
             const { data }:  { data: Array<IData> } = await axios.get(`${API_URL}/timeline`)
@@ -46,13 +44,13 @@ const TimelineAdmin = () => {
         <div className="h-[100vh] mt-20 overflow-y-scroll">
             { data.map( (ele,idx) => (
                 <div key={idx}>
-                    <div className="my-5 ml-6 font-bold">
+                   <div className="my-5 ml-6 font-bold">
                         <span className="text-5xl">{ele.year}</span>
                     </div>
                     <div key={idx}>{
                         ele.events.map( (month, idx) => (
                             <Toggle date={date} setDate={setDate} key={idx} datum={month} idx={idx}/>
-                        ) )
+                       ) )
                     }</div>
                 </div>
             ) ) }

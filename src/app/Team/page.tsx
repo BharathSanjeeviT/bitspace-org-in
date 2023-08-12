@@ -156,10 +156,10 @@ const MentorComp = ({ name, linkedIn, git, medium }: Img) => {
 const HoverComponent = ({ name, post }: Img) => {
   return (
     <>
-      <h1 className=" relative text-center px-2 outline-2 outline-black	outline font-extrabold font-glb text-3xl z-50 bg-accent text-black">
+      <h1 className=" relative text-center px-2 outline-2 outline-black	outline font-extrabold font-glb text-3xl bg-accent text-black">
         {name}
       </h1>
-      <h1 className=" relative w-full text-center mt-2 outline-2 outline-black	outline	 font-glb text-1xl z-50 bg-accent text-black">
+      <h1 className=" relative w-full text-center mt-2 outline-2 outline-black	outline	 font-glb text-1xl  bg-accent text-black">
         {post}
       </h1>
     </>
@@ -170,17 +170,12 @@ export default function Page() {
   return (
     <>
       <main className="flex flex-col justify-center items-center mx-4">
-        <h1 className="font-glb text-8xl mt-[10vh] text-center mb-10 max-sm:text-7xl max-sm:my-10">
+        <h1 className="font-glb text-8xl mt-[10vh] text-center mb-12 max-sm:text-7xl max-sm:my-10">
           MEET THE TEAM
         </h1>
 
         <section className="relative max-lg:hidden ">
-          <img
-            src="/team-w-splatter.png"
-            alt="OurTeam"
-            useMap="#team"
-            className="-z-1"
-          />
+          <img src="/team-w-splatter.png" alt="OurTeam" useMap="#team" />
           <map name="team">
             <area
               shape="poly"
@@ -189,7 +184,7 @@ export default function Page() {
             <div className="absolute top-[-30px] right-[220px] tooltip">
               <HoverComponent name="Mukesh Kannan" post="Mentor" />
 
-              <svg className="origin-top-left	left-[10px]  w-[90px] h-[10px] rotate-[130deg] absolute">
+              <svg className="origin-top-left	left-[6px] w-[90px] h-[10px] rotate-[130deg] absolute">
                 <circle cx="40" cy="5" r="5" fill="#d3d3d3" />
                 <line
                   x1="5"
@@ -248,7 +243,7 @@ export default function Page() {
               coords="546,567,544,552,550,545,553,530,541,517,537,425,526,378,517,366,526,347,532,348,535,339,573,325,571,307,573,301,574,302,569,286,564,255,582,234,608,220,637,216,666,223,690,263,688,285,686,302,689,306,686,321,727,336,733,356,724,375,727,410,733,424,747,456,721,480,701,510,694,552,690,566,546,568"
             />
             <div className="absolute bottom-[10px] right-[420px] tooltip">
-              <HoverComponent name="Bharath" post="Board Member" />
+              <HoverComponent name="Bharath Sanjeevi" post="Board Member" />
               <svg className="right-[0px] top-0 w-[70px] h-[10px] rotate-[-80deg] origin-top-left absolute">
                 <circle cx="60" cy="5" r="5" fill="#d3d3d3" />
                 <line
@@ -267,7 +262,7 @@ export default function Page() {
               shape="poly"
               coords="310,566,308,551,303,544,300,531,304,519,310,494,325,467,345,464,355,464,365,460,367,456,363,452,334,451,333,448,347,445,360,446,373,453,381,448,381,442,387,438,387,433,382,428,386,425,382,417,358,407,352,407,351,403,387,378,392,367,427,351,420,336,411,315,412,297,413,273,417,257,429,250,435,233,446,228,454,220,465,223,464,216,471,215,479,209,493,209,498,215,503,217,518,221,522,228,535,232,543,245,548,249,554,263,554,271,555,279,556,284,551,296,544,304,540,309,533,316,520,359,524,371,533,392,536,447,540,515,553,532,552,540,543,548,544,566,309,566"
             />
-            <div className="absolute bottom-[10px] right-[550px] tooltip">
+            <div className="absolute bottom-[15px] right-[550px] tooltip">
               <HoverComponent name="Rahul M Naveeth" post="President" />
               <svg className="right-[0px] top-0 w-[70px] h-[10px] rotate-[-105deg] origin-top-left absolute">
                 <circle cx="60" cy="5" r="5" fill="#d3d3d3" />
@@ -328,7 +323,6 @@ export default function Page() {
               coords="40,568,30,508,30,467,29,426,32,408,42,385,152,322,154,306,137,296,127,280,129,271,121,243,124,223,115,213,113,193,126,186,142,175,157,174,166,171,178,175,211,174,215,178,226,180,243,201,242,211,251,254,256,274,246,289,242,291,235,307,235,323,279,333,285,336,289,356,224,421,242,565,42,565"
             />
             <div className="absolute bottom-[370px] left-[-100px] tooltip">
-              <HoverComponent name="Ravi Prasath" post="Mentor" />
               <svg className="right-[-60px] top-8 w-[70px] h-[10px] rotate-[30deg] origin-top-left absolute">
                 <circle cx="60" cy="5" r="5" fill="#d3d3d3" />
                 <line
@@ -341,6 +335,7 @@ export default function Page() {
                   strokeWidth="4"
                 />
               </svg>
+              <HoverComponent name="Ravi Prasath" post="Mentor" />
             </div>
 
             <area
@@ -348,19 +343,19 @@ export default function Page() {
               coords="471,185,519,128,519,116,505,100,499,91,498,80,500,78,503,76,500,51,501,37,516,23,531,19,546,21,562,29,567,34,570,63,573,66,576,76,562,97,559,113,564,134,559,139,562,161,567,163,572,159,577,172,576,190,520,216,486,211,471,186"
             />
             <div className="absolute top-[-30px] left-[360px] tooltip">
-              <HoverComponent name="Sri Ram" post="Administrator" />
-              <svg className="right-[-60px] top-8 w-[70px] h-[10px] rotate-[30deg] origin-top-left absolute">
-                <circle cx="60" cy="5" r="5" fill="#d3d3d3" />
+              <svg className="right-[-70px] top-8 w-[70px] h-[10px] rotate-[30deg] origin-top-left absolute">
+                <circle cx="55" cy="5" r="5" fill="#d3d3d3" />
                 <line
                   x1="5"
                   y1="5"
-                  x2="60"
+                  x2="55"
                   y2="5"
                   stroke="#d3d3d3"
                   strokeLinecap="round"
                   strokeWidth="4"
                 />
               </svg>
+              <HoverComponent name="Sriram" post="Administrator" />
             </div>
           </map>
         </section>
