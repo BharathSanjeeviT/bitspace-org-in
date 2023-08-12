@@ -1,22 +1,29 @@
 'use client'
-import API_URL from "@/libs/API_URL";
 import {useEffect, useState} from "react"
-import Toggle from "@/libs/Toggle";
 import axios from "axios";
+import {API_URL} from "@/libs/constants";
+import Toggle from "@/libs/components/timeline/Toggle";
+import Change_Timeline from "@/libs/components/timeline/Change_Timeline";
 
 const TimelineAdmin = () => {
     interface IData {
         year : number;
         events : Array<{
-            date : string ;
+            date : Date;
             content : Array<string>;
             title : string;
             id: number;
         }>
     }
-
     const [data, setData] = useState<Array<IData>>([])
     const [date, setDate] = useState<string>('')
+    const [bool,setBool] = useState(false)
+    const [new_data, setNew_data] = useState<{ date : Date , content : Array<string> ; title : string ; id : number }>({
+        date : new Date(),
+        content : [ "" ],
+        title : "",
+        id : 100
+    })
 
     useEffect(()=>{
         const getData = async () => {
@@ -27,15 +34,24 @@ const TimelineAdmin = () => {
     },[])
 
     return (<>
-        <div className="h-[100vh] w-1/2 overflow-y-scroll rtl">
+        { data.length === 0 &&
+            <div className="fixed top-[50%] right-[50%]">
+                <div className='w-20 h-20 border-8 border-[#ddd5fd] rounded-full border-t-[#9c89e7] animate-spin'></div>
+            </div>
+        }
+        <div className="fixed w-full h-20 bg-white">
+            <button className="fixed h-16 m-5 text-xl font-semibold w-36 bg-red" onClick={()=>setBool(true)}>Add a Day</button>
+        </div>
+        <Change_Timeline change={bool} setChange={setBool} data={new_data} setData={setNew_data} setDelete={setBool} newDate={true}/>
+        <div className="h-[100vh] mt-20 overflow-y-scroll">
             { data.map( (ele,idx) => (
-                <div key={idx} className="ltr">
+                <div key={idx}>
                     <div className="my-5 ml-6 font-bold">
                         <span className="text-5xl">{ele.year}</span>
                     </div>
                     <div key={idx}>{
                         ele.events.map( (month, idx) => (
-                            <Toggle date={date} setDate={setDate} key={idx} month={month} idx={idx}/>
+                            <Toggle date={date} setDate={setDate} key={idx} datum={month} idx={idx}/>
                         ) )
                     }</div>
                 </div>

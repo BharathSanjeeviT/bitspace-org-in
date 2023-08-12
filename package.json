@@ -20,6 +20,7 @@
     "axios": "^1.4.0",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
+    "html-react-parser": "^4.2.0",
     "markdown-to-jsx": "^7.2.1",
     "next": "13.4.7",
     "postcss": "8.4.24",

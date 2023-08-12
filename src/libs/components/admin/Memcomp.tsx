@@ -4,7 +4,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { useState } from "react";
 import Pop from "./Pop";
-import { Users } from "./utills/types";
+import { Users } from "@/libs/utills/types";
 
 const Memcomp = (data:Users) => {
 

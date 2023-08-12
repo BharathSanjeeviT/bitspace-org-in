@@ -1,7 +1,7 @@
+import { API_URL } from '@/libs/constants';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 import { useState } from 'react';
-import API_URL from './API_URL';
 
 const Pop = ({show,setShow,data,setBan} : {
         show:boolean,
@@ -20,7 +20,7 @@ const Pop = ({show,setShow,data,setBan} : {
         setBan((e)=>!e)
     }
     return ( show ? ( <>
-        <div className="h-[100vh] w-full bg-[rgba(0,0,0,0.6)] fixed top-0 left-0 flex justify-center items-center">
+        <div className="h-full w-full bg-[rgba(0,0,0,0.6)] fixed top-0 left-0 flex justify-center items-center">
             <div className="flex flex-col items-center justify-between bg-white border-4 border-black h-52 w-96">
                 { banned ? <span className='px-3 pt-8 text-lg font-semibold text-center'>{ data.username } is { data.ban ? 'UNBAN' : 'BAN' }ED</span> :
                 <div className='flex flex-col items-center justify-center w-72'>
