@@ -23,6 +23,30 @@ export type Users = {
     created_at : Date,
     discord_id : string,
     github_id : string,
-    Role : Array<Role>
+    Role_user : Array<Role>
+}
+export type WorkshopType = {
+    id: string,
+    fromDate: Date,
+    toDate: Date,
+    regDate: Date,
+    is_completed: boolean,
+    type: "BYTECON",
+    name: string,
+    description: string,
+    agenda: string,
+    poster: string,
+    register: string,
+    take_away: string,
+    Slots : Array<SlotType>
+}
+
+export type SlotType = {
+    id : number ,
+    max_count : number ,
+    count : number ,
+    work_id : string ,
+    date : string,
+    venue : string
 }
 

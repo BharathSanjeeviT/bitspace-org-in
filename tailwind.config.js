@@ -25,6 +25,7 @@ module.exports = {
     fontFamily: {
       inter: "Inter",
       glb: "GlacialBold",
+      oranienbaum: ['Oranienbaum', 'sans-serif'],
     },
 
     extend: {

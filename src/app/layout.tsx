@@ -35,7 +35,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-white relative flex flex-col items-stretch font-inter">
+      <body className="relative flex flex-col items-stretch bg-white font-inter">
         <WHeader />
         <main className="h-main mt-[8vh]">{children}</main>
       </body>
