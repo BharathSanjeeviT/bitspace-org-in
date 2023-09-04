@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+.text-box {
+    @apply bg-white border border-black border-[4px] p-3 m-2 rounded text-center font-bold
+}
+
 @font-face {
   font-family: "glacialbold";
   src: url("../libs/assets/fonts/glacial/GlacialIndifference-Bold.otf");
@@ -61,14 +65,17 @@ rtl {
   background: #ffffff;
 }
 
-.comeBaby {
+.cardIn {
   animation: fromUp 0.3s ease-in-out;
   /* transform-origin: 50% 0; */
+  width: 550px;
   overflow: hidden;
   transition: height 0.3s ease-in-out;
 }
-.goBaby {
+.cardOut {
   animation: goUp 0.3s ease-in-out;
+  width: 550px;
+  height: 350px;
   /* transform-origin: 50% 0; */
   overflow: hidden;
   transition: height 0.3s ease-in-out;
@@ -76,15 +83,15 @@ rtl {
 }
 
 .card {
-  width: 491px;
+  width: 500px;
   height: 350px;
   margin-bottom: 10px;
   margin-top: 5px;
   margin-left: 20px;
-  padding-left: 15px;
-  padding-top: 15px;
+  overflow: auto;
+  padding: 15px;
   background-color: #ded6fe;
-  border-left: 30px solid #9d8ae8;
+  border-left: 20px solid #9d8ae8;
 }
 
 @keyframes fromUp {

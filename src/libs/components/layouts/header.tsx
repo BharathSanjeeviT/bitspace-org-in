@@ -1,64 +1,71 @@
 "use client";
-import bits_pride from "@/libs/assets/images/bitspace_progress.png";
 
-import { usernameContext } from "@/libs/contexts/AuthContext";
+import { GITHUB_OAUTH_AUTH_URL, GITHUB_OAUTH_CLIENT_ID, GITHUB_OAUTH_REDIRECT_URL, GITHUB_SCOPE } from "@/libs/constants";
+import { useUserStore } from "@/libs/stores";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useContext } from "react";
-import Image from "next/image";
 
-interface headerProps {
-  name: string;
-  link: string;
-  home?: boolean;
-}
+type NavLinkParams = {
+    href: string;
+    children: string;
+};
 
-function InputLink({ name, link, home = false }: headerProps) {
-  const pathname = usePathname();
-  return (
-    <Link
-      href={link}
-      className={`text-xl font-glb 
-      ${
-        pathname.match("/(.*)$")![0] === link
-          ? "text-teal border-b-2 border-b-teal"
-          : "text-white"
-      }
-      hover:text-teal hover:text-[1.3rem] transition-all ease-in-out
-      `}
-    >
-      <span>{name.toUpperCase()}</span>
-    </Link>
-  );
+function NavLink({ href, children }: NavLinkParams) {
+    const pathname = usePathname();
+    return (
+        <Link href={href}>
+            <span
+                className={`font-extrabold ${pathname.match("/(.*)$")![0] === href ? "text-accent" : "text-black"
+                    }
+        transition-colors ease-in-out hover:text-accent
+        `}
+            >
+                {children}
+            </span>
+        </Link>
+    );
 }
 
 export function Header() {
-  "use client";
-  const abc = useContext(usernameContext);
 
-  return (
-    <header className="fixed z-50 top-0 w-screen h-[10%] shadow-[0px_0px_50px_2px_#000000] bg-black flex items-center justify-between p-5">
-      <Link href="/">
-        <div className="flex justify-center w-16">
-          <Image src={bits_pride} alt="bitspace-pride" />
-        </div>
-      </Link>
-      <nav className="flex flex-row items-center text-xl text-white font-glb gap-12">
-        <InputLink name="Home" link="/" />
-        <InputLink name="About" link="/About" />
-        <InputLink name="Events" link="/Events" />
-        <InputLink name="MDS" link="/Mds" />
-        <InputLink name="Timeline" link="/Timeline" />
-        <InputLink name="Space" link="/Space" />
-        <InputLink name="FAQ" link="/FAQ" />
-        <InputLink name="Socials" link="/Socials" />
-        <InputLink name="Team" link="/Team" />
-      </nav>
-      <div>
-        <button className="px-4 py-2 text-black text-glb font-glb bg-teal">
-          {abc.username !== "" ? "PROFILE" : "LOGIN"}
-        </button>
-      </div>
-    </header>
-  );
+    const userStore = useUserStore((state) => state.user);
+    const handleProfile = async () => {
+        const urlParams = new URLSearchParams({
+            client_id: GITHUB_OAUTH_CLIENT_ID || "",
+            redirect_uri: GITHUB_OAUTH_REDIRECT_URL || "",
+            scope: GITHUB_SCOPE || "",
+            state: "random",
+        });
+        const url = `${GITHUB_OAUTH_AUTH_URL}?${urlParams.toString()}`;
+        window.location.href = url;
+    }
+
+    return (
+        <header
+            id="Wheader"
+            className="fixed z-40 flex items-center justify-between w-screen px-4 overflow-hidden text-lg bg-white border-b-2 shadow-md h-header border-bsprime" //shadow-[0px_0px_9px_#000000]
+        >
+            <div className="w-1/6">
+                <Link href="/" className="text-3xl font-glb">:bs</Link>
+            </div>
+            <nav className="flex flex-row items-center justify-center w-4/6 gap-10">
+                <NavLink href="/">HOME</NavLink>
+                <NavLink href="/events">EVENTS</NavLink>
+                <NavLink href="/timeline">TIMELINE</NavLink>
+                <NavLink href="/faq">FAQ</NavLink>
+                <NavLink href="/socials">SOCIALS</NavLink>
+                <NavLink href="/team">TEAM</NavLink>
+            </nav>
+            <div className="flex flex-col items-end justify-center w-1/6">
+                {!userStore ? <button onClick={handleProfile} className="px-8 py-2 text-sm font-black border-2 border-black bg-accent">
+                    PROFILE
+                </button> : (
+                    <Link href="/u/me">
+                        <img className="w-[30px] h-[30px] rounded-full" src={`https://github.com/${userStore.username}.png`} />
+                    </Link>
+                )}
+            </div>
+        </header>
+    );
 }
+

@@ -35,7 +35,7 @@ const WorkshopSlot = ({ slot , setSlot , data } : {slot : boolean , setSlot:Reac
             <div className="fixed top-0 flex items-center justify-center w-16 h-16 mt-32 text-white bg-[rgba(0,0,0,0.7)] rounded-full right-8">
                 <button onClick={()=>{setSlot(false)}}><CloseIcon fontSize="large"/></button>
             </div>
-            <div className="flex justify-around items-center w-[1440px] m-3 h-[720px] bg-white border-2 border-white flex-wrap overflow-auto">
+            <div className="flex justify-center items-center w-[90vw]  m-3 h-[85vh] bg-white border-2 border-white flex-wrap overflow-auto">
                 {
                     data.map((ele,idx)=>{
                         const avail = ele.max_count - ele.count
@@ -44,7 +44,7 @@ const WorkshopSlot = ({ slot , setSlot , data } : {slot : boolean , setSlot:Reac
                         return ( <>
                         <div key={idx} className={`${ avail > ele.max_count*0.75 ? "bg-[#8ae9b0]" :
                             ( avail > ele.max_count*0.25 ) ? "bg-[#e9df8a]" : "bg-[#e98a8a]"}
-                            my-3 w-[20rem] h-[26rem] border-[4px] text-lg font-semibold flex justify-center items-center`}>
+                            my-3 w-[20rem] h-[26rem] border-[4px] text-lg font-semibold flex justify-center mx-10 items-center`}>
                             <div className={ `p-3 w-[18rem] h-[24rem] flex flex-col justify-center items-center`}
                                 onClick={()=>{setSlot_id(ele.id)}}>
                                 <div className="mb-3 text-2xl">SLOT {idx+1}</div>
@@ -61,7 +61,7 @@ const WorkshopSlot = ({ slot , setSlot , data } : {slot : boolean , setSlot:Reac
                     })
                 }
                 <div className="flex justify-center w-full">
-                    <button className="w-32 h-14 text-2xl font-medium bg-[#9785df] border-2 border-black" onClick={()=>{rsvp()}}>RSVP</button>
+                    <button className="w-32 h-14 text-2xl font-medium bg-[#9785df] border-4 border-black" onClick={()=>{rsvp()}}>RSVP</button>
                 </div>
             </div>
             <Messages message={message} data={msg} setMessage={setMessage} sucess={sucess}/>

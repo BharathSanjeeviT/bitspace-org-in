@@ -10,7 +10,7 @@ const Messages = ({ message , setMessage , sucess, data }: {message:boolean , da
             <div className="fixed top-0 flex items-center justify-center w-16 h-16 mt-32 text-white bg-[rgba(0,0,0,0.7)] rounded-full right-8">
                 <button onClick={()=>{setMessage(false)}}><CloseIcon fontSize="large"/></button>
             </div>
-            <div className={`w-9/12 h-20 bg-[#8ae9b0] text-xl font-bold border-4 border-black flex justify-center items-center text-black`}>
+            <div className={`w-9/12 h-20 bg-[#8ae9b0] text-xl font-bold border-4 border-black flex justify-center items-center text-black text-center`}>
                 {data}
             </div>
         </div> :
@@ -18,7 +18,7 @@ const Messages = ({ message , setMessage , sucess, data }: {message:boolean , da
             <div className="fixed top-0 flex items-center justify-center w-16 h-16 mt-32 text-white bg-[rgba(0,0,0,0.7)] rounded-full right-8">
                 <button onClick={()=>{setMessage(false)}}><CloseIcon fontSize="large"/></button>
             </div>
-            <div className={`w-9/12 h-20 bg-[#e98a8a] text-xl font-bold border-4 border-black flex justify-center items-center text-black`}>
+            <div className={`w-9/12 h-20 bg-[#e98a8a] text-xl font-bold border-4 border-black flex justify-center items-center text-black text-center`}>
                 {data}
             </div>
         </div>
