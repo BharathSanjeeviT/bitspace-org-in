@@ -1,5 +1,6 @@
-'use client'
+"use client";
 import { Header } from "@/libs/components/layouts/header";
+import "jos-animation/dist/jos.css";
 import "./globals.css";
 import "../libs/assets/fonts/Inter/inter.css";
 import { useUserStore } from "@/libs/stores";
@@ -7,6 +8,7 @@ import Cookies from 'js-cookie';
 import axios from "axios";
 import { API_URL } from "@/libs/constants";
 import { useEffect, useState } from "react";
+import jos from "jos-animation/dist/jos.min.js";
 
 export default function RootLayout({
     children,
@@ -20,11 +22,21 @@ export default function RootLayout({
 
     const [loading, setLoading] = useState(true);
 
+    const jos_options = {
+        debugMode: false,
+        passive: true,
+        animation: "fade",
+        duration: 0.4,
+        rootMargin: "20% 0% 30% 0%",
+    };
+
     useEffect(() => {
         const fetchUser = async () => {
             if (accessToken && !userStore) {
                 try {
-                    const { data } = await axios.get(API_URL + "/me", { withCredentials: true });
+                    const { data } = await axios.get(API_URL + "/me", {
+                        withCredentials: true,
+                    });
                     setUserStore(data);
                 } catch (error) {
                     console.log(error);
@@ -39,7 +51,15 @@ export default function RootLayout({
         fetchUser();
     }, [accessToken, userStore]);
 
-    useEffect(() => console.log(loading), [loading])
+    useEffect(() => console.log(loading), [loading]);
+
+    useEffect(() => {
+        jos.init(jos_options);
+    }, []);
+
+    useEffect(() => {
+        jos.refresh();
+    });
 
     return (
         <html lang="en">
@@ -55,10 +75,7 @@ export default function RootLayout({
                     content="bitspaceorg, bitspace cit, cit bitspace, open source, :bitspace"
                 />
                 <meta name="author" content="Bit Space" />
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1"
-                />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="theme-color" content="#000000" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:site" content="@bitspaceorg" />
@@ -87,22 +104,22 @@ export default function RootLayout({
                 <meta property="og:locale" content="en_US" />
                 <meta property="og:locale:alternate" content="en_US" />
 
-                <link rel="icon" href="/app/favicon.ico" />
-                <link rel="apple-touch-icon" href="/app/logo192.png" />
-                <link rel="manifest" href="/app/manifest.json" />
+                <link rel="icon" href="./favicon.ico" />
             </head>
             <body className="relative flex flex-col items-stretch bg-white font-inter">
                 {loading ? (
                     <div className="flex flex-col items-center justify-center w-screen h-screen">
-                        <img className="w-[100px] animate-bounce" src="https://media.discordapp.net/attachments/1106935324556406866/1128657375260311583/logocir.png?width=1242&height=1024" />
+                        <img
+                            className="w-[100px] animate-bounce"
+                            src="https://media.discordapp.net/attachments/1106935324556406866/1128657375260311583/logocir.png?width=1242&height=1024"
+                        />
                     </div>
                 ) : (
                     <>
                         <Header />
                         <main className="h-main mt-[8vh]">{children}</main>
                     </>
-                )
-                }
+                )}
             </body>
         </html>
     );

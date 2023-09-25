@@ -9,7 +9,15 @@
 }
 
 .text-box {
-    @apply bg-white border border-black border-[4px] p-3 m-2 rounded text-center font-bold
+    @apply bg-white border-black border-2 p-3 text-left font-medium outline-none
+}
+
+.text-box-icon-container {
+    @apply bg-white w-full h-fit border-2 flex flex-row items-start justify-center border-black p-3 mt-4 text-left
+}
+
+.text-box-icon {
+    @apply bg-white ml-3 text-left font-medium outline-none
 }
 
 @font-face {
@@ -117,4 +125,8 @@ rtl {
     /* transform: scaleY(0); */
     /* opacity: 0; */
   }
+}
+
+.jos-shrink {
+  transform: scale(1.1);
 }

@@ -1,10 +1,6 @@
 "use client"
 import axios from "axios";
 import { useEffect, useState } from "react"
-<<<<<<< HEAD
-import { Rank } from '@/libs/utills/types'
-=======
->>>>>>> upstream/master
 import { API_URL } from "@/libs/constants";
 import Memcomp from "@/libs/components/admin/Memcomp";
 

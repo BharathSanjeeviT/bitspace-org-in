@@ -6,15 +6,17 @@ import { SlotType, WorkshopType } from "@/libs/utills/types";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useUserStore } from "@/libs/stores";
 
 const WorkshopSlug = ( { params }  : { params :  { workshop : string } } ) => {
+
+    const userStore = useUserStore((state) => state.user);
 
     const [ data , setData ] = useState<WorkshopType>()
     const [ loading , setLoading ] = useState(true)
     const [ slot , setSlot ] = useState(false)
     const [ slotData , setSlotData ] = useState<Array<SlotType>>()
     const [ message , setMessage ] = useState(false)
-    const [ loggedIn , setLoggedIn ] = useState(true)
     const [ errorMsg , setError ] = useState("")
 
     useEffect(()=>{
@@ -33,7 +35,7 @@ const WorkshopSlug = ( { params }  : { params :  { workshop : string } } ) => {
             if( ele.count < ele.max_count )
                 bool = true
         })
-        if(!loggedIn){
+        if( userStore === null ){
             setError("Please Login")
             setMessage(true)
         }else{

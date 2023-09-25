@@ -43,7 +43,7 @@ export function Header() {
     return (
         <header
             id="Wheader"
-            className="fixed z-40 flex items-center justify-between w-screen px-4 overflow-hidden text-lg bg-white border-b-2 shadow-md h-header border-bsprime" //shadow-[0px_0px_9px_#000000]
+            className="fixed z-40 flex items-center justify-between w-screen px-4 overflow-hidden text-lg bg-white border-b-2 shadow-md h-header border-bsprime"
         >
             <div className="w-1/6">
                 <Link href="/" className="text-3xl font-glb">:bs</Link>

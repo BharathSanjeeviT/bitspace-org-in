@@ -5,9 +5,9 @@ import axios from "axios";
 import { API_URL } from "@/libs/constants";
 import { useUserStore } from "@/libs/stores";
 import { useRouter } from "next/navigation";
+import { Loading } from "@/libs/components/ban/loading/message";
 
 const AuthCallBackPage = () => {
-    const [dot, setDot] = useState(".");
     const [msg, setMsg] = useState("AUTHENTICATING");
     const code = useSearchParams().get("code");
     const userStore = useUserStore((state) => state.setUser);
@@ -26,33 +26,15 @@ const AuthCallBackPage = () => {
                 } else {
                     userStore(data);
                 }
-                router.push("/")
+                router.push("/u/me")
             } catch (error) {
                 console.error("Authentication error:", error);
             }
         };
-
-        const intervalId = setInterval(() => {
-            setDot(prevDot => prevDot === "..." ? "." : prevDot + ".");
-        }, 500);
-
         handleAuth();
-
-        return () => {
-            clearInterval(intervalId);
-        };
     }, [code]);
 
-    return (
-        <div className="flex flex-col items-center justify-center w-full h-full">
-            <div className="font-black text-[40px]">
-                {msg}{dot}
-            </div>
-            <div>
-                <span className="font-black text-accent">*</span> <span className="font-black">PLEASE STAND BY</span> <span className="font-black text-accent">*</span>
-            </div>
-        </div>
-    );
+    return <Loading msg={msg} sub_msg="PLEASE STAND BY" />;
 }
 
 export default AuthCallBackPage;

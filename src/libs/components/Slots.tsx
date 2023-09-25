@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import CloseIcon from '@mui/icons-material/Close';
+import DoneIcon from '@mui/icons-material/Done';
 import { SlotType } from "../utills/types";
 import axios from "axios";
 import API_URL from "../utills/API_URL";
@@ -15,9 +16,7 @@ const WorkshopSlot = ({ slot , setSlot , data } : {slot : boolean , setSlot:Reac
 
     const rsvp = async () => {
         setLoading(true)
-        const { data } = await axios.post(`${API_URL}/event/workshop`,{
-            slot_id
-        })
+        const { data } = await axios.post(`${API_URL}/event/workshop`, { slot_id } , { withCredentials : true } )
         setLoading(false)
         setSucess(data.status)
         setMsg(data.data)
@@ -44,9 +43,11 @@ const WorkshopSlot = ({ slot , setSlot , data } : {slot : boolean , setSlot:Reac
                         return ( <>
                         <div key={idx} className={`${ avail > ele.max_count*0.75 ? "bg-[#8ae9b0]" :
                             ( avail > ele.max_count*0.25 ) ? "bg-[#e9df8a]" : "bg-[#e98a8a]"}
-                            my-3 w-[20rem] h-[26rem] border-[4px] text-lg font-semibold flex justify-center mx-10 items-center`}>
-                            <div className={ `p-3 w-[18rem] h-[24rem] flex flex-col justify-center items-center`}
-                                onClick={()=>{setSlot_id(ele.id)}}>
+                            my-3 w-[20rem] h-[26rem] border-[4px] text-lg font-semibold flex flex-col justify-center mx-10 items-center relative `}
+                            onClick={()=>{setSlot_id(ele.id)}}>
+                            { ( slot_id == ele.id ) &&
+                                <div className="absolute flex items-center justify-center w-10 h-10 bg-white rounded-full left-4 top-4" ><DoneIcon/> </div>
+                            }
                                 <div className="mb-3 text-2xl">SLOT {idx+1}</div>
                                 <div>DATE</div>
                                 <div>{ele.date.slice(0,10)}</div>
@@ -55,7 +56,6 @@ const WorkshopSlot = ({ slot , setSlot , data } : {slot : boolean , setSlot:Reac
                                 <div className="mt-3">VENUE</div><div className="mb-3">{ele.venue}</div>
                                 <div className="mt-3">AVAILABILITY</div>
                                 <div className={`text-${color}`}>{avail}</div>
-                            </div>
                         </div>
                         </>)
                     })

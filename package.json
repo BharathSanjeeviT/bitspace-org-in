@@ -29,6 +29,7 @@
     "eslint-config-next": "13.4.7",
     "framer-motion": "^10.15.1",
     "html-react-parser": "^4.2.0",
+    "jos-animation": "^0.8.8",
     "js-cookie": "^3.0.5",
     "js-cookies": "^1.0.4",
     "markdown-to-jsx": "^7.2.1",

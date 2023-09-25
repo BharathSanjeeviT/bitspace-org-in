@@ -61,9 +61,9 @@ const Toggle = ({ month, idx, date, setDate, isAdmin = true }: { month: IMonth, 
             {isAdmin && <EditIcon onClick={handleChange} className='mb-1 ml-2 text-xl cursor-pointer' />}
         </span>
             {show &&
-                <div className={ani}>
+                <div>
                     {month.content.map((event, idx) => (
-                        <div className="card" key={idx}>{parse(event)}</div>
+                        <div className={`card ${ani}`} key={idx}>{parse(event)}</div>
                     ))}
                 </div>
             }

@@ -32,7 +32,7 @@ const Workshops = () => {
         <div className="p-10">
             <div>
                 <span className="text-2xl font-semibold">Upcomming</span>
-            <div>
+            <div className="flex">
                 {
                     upcomming.map(( event , idx )=>{
                         return (
