@@ -8,8 +8,10 @@ import { useRouter } from "next/navigation";
 import { Loading } from "@/libs/components/ban/loading/message";
 
 const AuthCallBackPage = () => {
+    const US = useSearchParams()
+    console.log(US);
     const [msg, setMsg] = useState("AUTHENTICATING");
-    const code = useSearchParams().get("code");
+    const code = US.get("code");
     const userStore = useUserStore((state) => state.setUser);
     const router = useRouter()
 

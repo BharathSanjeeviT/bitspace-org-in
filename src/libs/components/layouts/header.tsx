@@ -36,6 +36,7 @@ export function Header() {
             scope: GITHUB_SCOPE || "",
             state: "random",
         });
+        console.log(urlParams.toString());
         const url = `${GITHUB_OAUTH_AUTH_URL}?${urlParams.toString()}`;
         window.location.href = url;
     }
