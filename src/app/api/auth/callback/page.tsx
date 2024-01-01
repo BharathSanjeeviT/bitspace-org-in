@@ -9,7 +9,6 @@ import { Loading } from "@/libs/components/ban/loading/message";
 
 const AuthCallBackPage = () => {
     const US = useSearchParams()
-    console.log(US);
     const [msg, setMsg] = useState("AUTHENTICATING");
     const code = US.get("code");
     const userStore = useUserStore((state) => state.setUser);
@@ -19,7 +18,6 @@ const AuthCallBackPage = () => {
         const handleAuth = async () => {
             try {
                 await axios.post(API_URL + "/auth/access_token_github", { code }, { withCredentials: true });
-                console.log(code);
                 setMsg("SIGNING IN");
                 const { data } = await axios.get(API_URL + "/me", { withCredentials: true });
                 if (!data) {
