@@ -5,6 +5,7 @@ import Image from "next/image";
 
 export default function Page() {
     const user = useUserStore((state) => state.user);
+    console.log(CLIENT_URL);
     return (
         <section className="py-20 h-[90%] w-full  flex flex-col items-center gap-14 md:justify-center">
             <section className="font-glb text-2xl md:text-4xl">
