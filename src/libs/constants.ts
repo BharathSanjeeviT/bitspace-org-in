@@ -1,9 +1,10 @@
 const production: boolean = process.env.PRODUCTION === "true";
 export const API_URL = (production) ? "https://api.bitspace.org.in" : "http://localhost:6969"
 
-export const CLIENT_URL = (production) ? "https://bitspace.org.in" : "http://localhost:3000"
+export const CLIENT_URL = (production) ? "https://www.bitspace.org.in" : "http://localhost:3000"
 
 export const GITHUB_OAUTH_REDIRECT_URL = CLIENT_URL + "/api/auth/callback"
+// https://www.bitspace.org.in/api/auth/callback
 
 export const JOIN_DISCORD_URL = (production) ? "https://join.bitspace.org.in" : "http://localhost:4200";
 

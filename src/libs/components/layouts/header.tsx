@@ -3,7 +3,7 @@
 import { GITHUB_OAUTH_AUTH_URL, GITHUB_OAUTH_CLIENT_ID, GITHUB_OAUTH_REDIRECT_URL, GITHUB_SCOPE } from "@/libs/constants";
 import { useUserStore } from "@/libs/stores";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 type NavLinkParams = {
     href: string;
@@ -27,7 +27,6 @@ function NavLink({ href, children }: NavLinkParams) {
 }
 
 export function Header() {
-    const router = useRouter();
     const userStore = useUserStore((state) => state.user);
     const handleProfile = async () => {
         const urlParams = new URLSearchParams({
@@ -40,7 +39,7 @@ export function Header() {
         console.log(GITHUB_OAUTH_AUTH_URL);
         const url = `${GITHUB_OAUTH_AUTH_URL}?${urlParams.toString()}`;
         console.log(url);
-        router.push(url);
+        window.location.href = url;
     }
 
     return (
