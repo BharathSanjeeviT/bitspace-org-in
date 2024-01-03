@@ -8,9 +8,13 @@ export default function Page() {
 
     const user = useUserStore((state) => state.user);
     const[view,setView] = useState(false)
-    const handleDick = () => {
+    const[data,setData] = useState("")
+    const handleResponse = () => {
         if(user) window.location.href = "https://discord.gg/RSCMzzGf8H"
-        else setView(true)
+        else {
+            setData("Login to join discord")
+            setView(true)
+        } 
     }
 
     return (
@@ -18,7 +22,7 @@ export default function Page() {
             <section className="text-2xl font-glb md:text-4xl">
                 STAY IN TOUCH WITH US !!!
             </section>
-            { view && <Toast data="Login to join discord" setView={setView}/> }
+            { view && <Toast data={data} setView={setView}/> }
             <section className=" flex flex-col justify-center md:flex-row max-w-[150px] min-w-[150px] w-[50%] gap-10 md:gap-16">
                 <section className="">
                     <a href="https://github.com/bitspaceorg">
@@ -54,11 +58,11 @@ export default function Page() {
                     </h1>
                 </section>
                 <section className="">
-                    <button onClick={()=>handleDick()}>
+                    <button onClick={()=>handleResponse()}>
                         <Image width={250} height={250} alt="discord" src="https://cdn.discordapp.com/attachments/1106935324556406866/1191110671916609566/discord-icon-43736.png?ex=65a43f41&is=6591ca41&hm=85f318e9b44db948e87e2023bbad3152c5c3a72cdd4c3a269a9e4a7d19b88be7&" />
                     </button>
                     <h1 className="mt-5 text-2xl text-center font-glb text-accent">
-                        <button onClick={()=>handleDick()}>
+                        <button onClick={()=>handleResponse()}>
                             @bitspaceorg
                         </button>
                     </h1>
