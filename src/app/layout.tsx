@@ -117,7 +117,9 @@ export default function RootLayout({
                 ) : (
                     <>
                         <Header />
-                        <main className="h-main mt-[8vh]">{children}</main>
+                        <main className="h-main mt-[8vh]">
+                        {children}
+                        </main>
                     </>
                 )}
             </body>
